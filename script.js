@@ -15,5 +15,10 @@ document.getElementById('ing').addEventListener('click', () => {
     };
 
     datos.push(presup);
+
+    presup.iva = presup.prec * 21;
+
+    presup.cont = presup.prec + presup.iva;
+
     console.log(presup);
 });
