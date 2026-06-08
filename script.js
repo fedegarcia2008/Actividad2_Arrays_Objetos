@@ -24,5 +24,9 @@ document.getElementById('ing').addEventListener('click', () => {
 
     presup.pre_inter = presup.cont + presup.inter;
 
+    presup.cuotas_veinticuato = presup.pre_inter / 24;
+
+    presup.cuotas_treintayseis = presup.pre_inter / 36;
+
     console.log(presup);
 });
