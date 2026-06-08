@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
     <title>Automotores</title>
 </head>
 <body>
@@ -11,12 +12,18 @@
     </header>
     <form>
         <h2>Carga de datos</h2>
-        <label>Marca: <input type="text" id="m"</label>
-        <label>Precio de lista: <input type="number" id="p"</label>
-        <label>Cliente: <input type="text" id="c"</label>
+        <label>Marca: <input type="text" id="m"></label>
+        <label>Precio de lista: <input type="number" id="p"></label>
+        <label>Cliente: <input type="text" id="c"></label>
         <button type="reset" id="ing">Ingresar</button>
     </form>
     <div id="salida"></div>
+    <form>
+        <h2>Buscar Presupuesto</h2>
+        <input type="text" id="busCliente" placeholder="Ingrese cliente">
+        <button type="button" id="buscar">Buscar</button>
+    </form>
+    <div id="salidaBusqueda"></div>
     <script src="script.js"></script>
 </body>
 </html>
