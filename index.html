@@ -12,15 +12,15 @@
     </header>
     <form>
         <h2>Carga de datos</h2>
-        <label>Marca: <input type="text" id="m"></label>
-        <label>Precio de lista: <input type="number" id="p"></label>
-        <label>Cliente: <input type="text" id="c"></label>
+        <label>Marca: <input type="text" id="m" required></label>
+        <label>Precio de lista: <input type="number" id="p" step="0.01" min="1" required></label>
+        <label>Cliente: <input type="text" id="c" required></label>
         <button type="reset" id="ing">Ingresar</button>
     </form>
     <div id="salida"></div>
     <form>
         <h2>Buscar Presupuesto</h2>
-        <input type="text" id="busCliente" placeholder="Ingrese cliente">
+        <input type="text" id="busCliente" placeholder="Ingrese cliente" required>
         <button type="button" id="buscar">Buscar</button>
     </form>
     <div id="salidaBusqueda"></div>

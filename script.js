@@ -1,7 +1,6 @@
 let datos = [];
 
 document.getElementById('ing').addEventListener('click', () => {
-
     let presup = {
         marc: document.getElementById('m').value,
         pre: parseFloat(document.getElementById('p').value),
@@ -13,7 +12,7 @@ document.getElementById('ing').addEventListener('click', () => {
         cuotas_veinticuatro: 0,
         cuotas_treintayseis: 0
     };
-    
+
     if (!m.checkValidity() || !p.checkValidity() || !c.checkValidity() || !isNaN(presup.cli)) {
         alert(`Complete correctamente los campos.`);
         return;
@@ -52,7 +51,6 @@ document.getElementById('ing').addEventListener('click', () => {
             <th>VALOR EN 24 CUOTAS</th>
             <th>VALOR EN 36 CUOTAS</th>
         </tr>`;
-        
         datos.forEach(presup => {
             let fila = document.createElement('tr');
             fila.innerHTML = `
@@ -74,9 +72,16 @@ document.getElementById('ing').addEventListener('click', () => {
     mostrarPresupuesto();
 
     function precioMayor() {
+        let filtro = datos.filter(p => p.pre > 1200000);
+        if (filtro.length === 0) {
+            let h3 = document.createElement('h3');
+            h3.textContent = `No hay presupuestos mayores a $1200000`;
+            salida.appendChild(h3);
+            return;
+        }
         let tabla = document.createElement('table');
         let h2 = document.createElement('h2');
-        h2.textContent = `Lista de Presupuestos mayores a $100000`;
+        h2.textContent = `Lista de precios mayores a $1200000`;
         tabla.innerHTML = `
         <tr>
             <th>MARCA</th>
@@ -89,9 +94,8 @@ document.getElementById('ing').addEventListener('click', () => {
             <th>VALOR EN 24 CUOTAS</th>
             <th>VALOR EN 36 CUOTAS</th>
         </tr>`;
-        
         datos.forEach(presup => {
-            if (presup.pre > 100000) {
+            if (presup.pre > 1200000) {
                 let fila = document.createElement('tr');
                 fila.innerHTML = `
                 <td>${presup.marc}</td>
@@ -110,12 +114,7 @@ document.getElementById('ing').addEventListener('click', () => {
         salida.appendChild(h2);
         salida.appendChild(tabla);
     }
-    
-    datos.forEach(presup => {
-        if (presup.pre > 100000) {
-            precioMayor();
-        }
-    });
+    precioMayor();
 });
 
 document.getElementById('buscar').addEventListener('click', () => {
@@ -123,12 +122,10 @@ document.getElementById('buscar').addEventListener('click', () => {
     salida.innerHTML = '';
     function buscar() {
         let buscado = document.getElementById('busCliente').value;
-        
         if (!busCliente.checkValidity()) {
             alert(`Complete correctamente el campo.`);
             return;
         }
-
         let presupuesto = datos.filter(pre =>
             pre.cli.toLowerCase() === buscado.toLowerCase()
         );
@@ -164,7 +161,7 @@ document.getElementById('buscar').addEventListener('click', () => {
             salida.appendChild(h2);
             salida.appendChild(tabla);
         } else {
-            salida.innerHTML = '<h3>No se encontraron presupuestos para ese cliente</h3>';
+            salida.innerHTML = '<h3>No se encontraron presupuestos para ese cliente.</h3>';
         }
     }
     buscar();
