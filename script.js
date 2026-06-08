@@ -13,6 +13,11 @@ document.getElementById('ing').addEventListener('click', () => {
         cuotas_veinticuatro: 0,
         cuotas_treintayseis: 0
     };
+    
+    if (!m.checkValidity() || !p.checkValidity() || !c.checkValidity() || !isNaN(presup.cli)) {
+        alert(`Complete correctamente los campos.`);
+        return;
+    }
 
     datos.push(presup);
 
@@ -105,7 +110,12 @@ document.getElementById('ing').addEventListener('click', () => {
         salida.appendChild(h2);
         salida.appendChild(tabla);
     }
-    precioMayor();
+    
+    datos.forEach(presup => {
+        if (presup.pre > 100000) {
+            precioMayor();
+        }
+    });
 });
 
 document.getElementById('buscar').addEventListener('click', () => {
@@ -113,6 +123,12 @@ document.getElementById('buscar').addEventListener('click', () => {
     salida.innerHTML = '';
     function buscar() {
         let buscado = document.getElementById('busCliente').value;
+        
+        if (!busCliente.checkValidity()) {
+            alert(`Complete correctamente el campo.`);
+            return;
+        }
+
         let presupuesto = datos.filter(pre =>
             pre.cli.toLowerCase() === buscado.toLowerCase()
         );
